@@ -38,9 +38,9 @@ const props = defineProps({
 
 let animatedStats = ref(props.historyStatistics);
 
-animateCountUp(0, 0, animatedStats.value[0], (val) => animatedStats.value[0] = val);
-animateCountUp(1, 0, animatedStats.value[1], (val) => animatedStats.value[1] = val);
-animateCountUp(2, 0, animatedStats.value[2], (val) => animatedStats.value[2] = val);
+// animateCountUp(0, 0, animatedStats.value[0], (val) => animatedStats.value[0] = val);
+// animateCountUp(1, 0, animatedStats.value[1], (val) => animatedStats.value[1] = val);
+// animateCountUp(2, 0, animatedStats.value[2], (val) => animatedStats.value[2] = val);
 
 
 function animateCountUp(index, start, end, callback) {
