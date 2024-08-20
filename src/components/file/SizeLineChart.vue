@@ -7,9 +7,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { Chart, LineController, RadialLinearScale, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart, LineController, LinearScale, CategoryScale, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 
-Chart.register(LineController, RadialLinearScale, ArcElement, Tooltip, Legend);
+Chart.register(LineController, LinearScale, CategoryScale, PointElement, LineElement, Tooltip, Legend);
 
 const props = defineProps({
   data: {
@@ -22,6 +22,8 @@ const chartRef = ref(null);
 
 const chartData = props.data;
 
+console.log('SizeLine : ', chartData);
+
 onMounted(() => {
   const ctx = chartRef.value.getContext('2d');
   
@@ -31,7 +33,7 @@ onMounted(() => {
       labels: chartData.map(row => row.date),
       datasets: [{
         label: '증가 크기',
-        data: chartData.map(row => row.volume / (1024 * 1024)),
+        data: chartData.map(row => row.volume),  // 여기서 변환하지 않음
         fill: false,
         borderColor: 'rgb(49 46 129)',
         tension: 0.1,
@@ -56,17 +58,7 @@ onMounted(() => {
                 label += ': ';
               }
               if (context.parsed.y !== null) {
-                let bytes = context.parsed.y * 1024 * 1024; // 원래 값을 bytes로 변환
-                const units = ['bytes', 'KB', 'MB', 'GB', 'TB'];
-                let unitIndex = 0;
-                
-                while (bytes >= 1024 && unitIndex < units.length - 1) {
-                  bytes /= 1024;
-                  unitIndex++;
-                }
-
-                // 소수점 두 자리까지 표시하고, 불필요한 0은 제거
-                label += bytes.toFixed(2).replace(/\.?0+$/, '') + ' ' + units[unitIndex];
+                label += context.parsed.y + ' MB';
               }
               return label;
             }
@@ -85,7 +77,9 @@ onMounted(() => {
             callback: function(value, index, values) {
               return value + ' MB';
             }
-          }
+          },
+          suggestedMin: 0,
+          suggestedMax: 50  // 최대값을 50MB로 설정 (필요에 따라 조정)
         },
         x: {
           title: {
