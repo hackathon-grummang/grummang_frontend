@@ -21,8 +21,6 @@
           <thead class="bg-indigo-900">
             <tr>
               <th class="px-2 py-3 w-[5%] text-center text-sm font-bold font-medium text-white tracking-wider"></th>
-              <!-- <th class="px-1 py-3 w-[5%] text-center text-sm font-bold font-medium text-white tracking-wider">DLP</th> -->
-              <!-- <th class="px-1 py-3 w-[7%] text-center text-sm font-bold font-medium text-white tracking-wider">악성탐지</th> -->
               <th class="px-2 py-3 w-[7%] text-center text-sm font-bold font-medium text-white tracking-wider">VirusTotal</th>
               <th class="px-2 py-3 w-[26%] text-left text-sm font-bold font-medium text-white tracking-wider">파일명</th>
               <th class="px-2 py-3 w-[10%] text-center text-sm font-bold font-medium text-white tracking-wider">파일 유형</th>
@@ -43,38 +41,11 @@
                     onclick="event.cancelBubble = true;"
                   />
                 </td>
-                <!-- <td class="px-2 py-2 text-center whitespace-nowrap">
-                  <span v-if="details.fileStatus.dlpStatus === -1">
-                    <v-icon :size="22" class="text-gray-300">mdi-minus-circle-outline</v-icon>
-                  </span>
-                  <span v-else-if="details.fileStatus.dlpStatus === 0">
-                    <v-icon :size="22" class="text-amber-400">mdi-dots-horizontal-circle-outline</v-icon>
-                  </span>
-                  <span v-else-if="details.fileStatus.dlpStatus === 1">
-                    <v-icon :size="22" class="text-emerald-600">mdi-check-circle-outline</v-icon>
-                  </span>
-                  <span v-else>
-                    <v-icon :size="24" class="text-rose-600">mdi-help-circle-outline</v-icon>
-                  </span>
-                </td>
-                <td class="px-2 py-2 text-center whitespace-nowrap">
-                  <span v-if="details.fileStatus.gscanStatus === -1">
-                    <v-icon :size="22" class="text-gray-300">mdi-minus-circle-outline</v-icon>
-                  </span>
-                  <span v-else-if="details.fileStatus.gscanStatus === 0">
-                    <v-icon :size="22" class="text-amber-400">mdi-dots-horizontal-circle-outline</v-icon>
-                  </span>
-                  <span v-else-if="details.fileStatus.gscanStatus === 1">
-                    <v-icon :size="22" class="text-emerald-600">mdi-check-circle-outline</v-icon>
-                  </span>
-                  <span v-else>
-                    <v-icon :size="24" class="text-rose-600">mdi-help-circle-outline</v-icon>
-                  </span>
-                </td> -->
                 <td class="px-2 py-2 text-center whitespace-nowrap">
                   <span v-if="details.fileStatus.vtStatus === -1" class="bg-gray-200 text-slate-900 text-xs me-2 px-2.5 py-0.5 rounded-full">미검사</span>
                   <span v-if="details.fileStatus.vtStatus === 0" class="bg-amber-200 text-amber-800 text-xs me-2 px-2.5 py-0.5 rounded-full">스캔중</span>
-                  <span v-if="details.fileStatus.vtStatus === 1" class="bg-green-200 text-green-800 text-xs me-2 px-2.5 py-0.5 rounded-full">완료</span>
+                  <span v-if="details.fileStatus.vtStatus === 1 && details.vtReport.threatLabel === 'none'" class="bg-green-200 text-green-800 text-xs me-2 px-2.5 py-0.5 rounded-full">안전</span>
+                  <span v-if="details.fileStatus.vtStatus === 1 && details.vtReport.threatLabel !== 'none'" class="bg-red-200 text-red-800 text-xs me-2 px-2.5 py-0.5 rounded-full">위험</span>
                 </td>
                 <td class="px-2 py-2 whitespace-nowrap text-xs">{{ details.name }}</td>
                 <td class="px-2 py-2 whitespace-nowrap text-xs text-center">{{ details.type }}</td>
@@ -85,8 +56,6 @@
                   </div>
                 </td>
                 <td class="px-2 py-2 whitespace-nowrap text-xs">{{ details.user }}</td>
-                <!-- <td class="px-2 py-2 whitespace-nowrap text-xs text-center">{{ getDate(details.date) }}</td> -->
-                <!-- <td class="px-2 py-2 whitespace-nowrap text-xs text-center">{{ getDate(details.date) }}</td> -->
                 <td class="px-2 py-2 whitespace-nowrap text-xs text-center">{{ details.date }}</td>
               </tr>
               
@@ -103,58 +72,7 @@
                     </div>
                     <div class="flex border-t border-gray-200">
                       <span class="inline-block w-1/6 p-2 border-x border-gray-200 text-sm text-center">파일 경로</span>
-                      <span class="inline-block w-3/6 p-2 bg-white text-xs">{{ details.path }}</span>
-                      <span class="inline-block w-1/6 p-2 border-x border-gray-200 text-sm text-center">접근 가능 사용자 수</span>
-                      <span class="inline-block w-1/6 p-2 bg-white text-xs">{{ "20" }}</span>
-                    </div>
-
-
-                    <!-- 악성탐지 -->
-                    <div class="p-2 border-t border-gray-200 border-l bg-gray-100 cursor-pointer" @click="toggleGscanReport(index)">
-                      <v-icon v-if="!gscanStatus[index]" class="mr-2">mdi-chevron-right</v-icon>
-                      <v-icon v-else class="mr-2">mdi-chevron-down</v-icon>악성탐지
-                    </div>
-                    <div v-if="isGscanOpen(index) && details.fileStatus.gscanStatus == 1" class="bg-white">
-                      <div class="flex items-stretch border-t border-gray-200">
-                        <span class="flex items-center justify-center w-1/4 p-2 bg-gray-100 border-x border-gray-200 text-center text-sm">확장자 시그니쳐 일치 여부</span>
-                        <span class="flex inline-block w-1/4 p-2 bg-white text-xs">
-                          일치 여부 : {{ details.gscan.step1.correct  }}<br>
-                          MimeType 값 : {{ details.gscan.step1.mimeType }}<br>
-                          Signature 값: {{ details.gscan.step1.signature }}<br>
-                          파일 확장자 : {{ details.gscan.step1.extension }}
-                        </span>
-                        <span class="flex items-center justify-center w-[12.5%] p-2 bg-gray-100 border-x border-gray-200 text-sm text-center">심층분석</span>
-                        <span class="inline-block w-[37.5%] p-2 bg-white text-xs self-stretch">
-                          {{details.gscan.step2 }}
-                        </span>
-                      </div>
-                    </div>
-
-                    <!-- DLP Report -->
-                    <div class="p-2 border-t border-gray-200 border-l bg-gray-100 cursor-pointer" @click="toggleDLPReport(index)">
-                      <v-icon v-if="!dlpReportStatus[index]" class="mr-2">mdi-chevron-right</v-icon>
-                      <v-icon v-else class="mr-2">mdi-chevron-down</v-icon>DLP Report
-                    </div>
-                    <div v-if="isDLPReportOpen(index) && (details.fileStatus.dlpStatus == 1)" class="bg-white">
-                      <div class="flex">
-                        <div class="w-1/2 border-t border-gray-200">
-                          <div>
-                            <span class="inline-block w-1/3 p-2 h-1/3 leading-[4rem] bg-gray-100 border-x border-gray-200 text-sm text-center">탐지 정책 수</span>
-                            <span class="inline-block w-2/3 p-2 h-1/3 bg-white text-xs">20</span>
-                          </div>
-                          <div class="border-t border-gray-200">
-                            <span class="inline-block w-1/3 p-2 h-1/3 leading-[4rem] bg-gray-100 border-x border-gray-200 text-sm text-center">탐지 개수</span>
-                            <span class="inline-block w-2/3 p-2 h-1/3 bg-white text-xs">20</span>
-                          </div>
-                          <div class="border-t border-gray-200">
-                            <span class="inline-block w-1/3 p-2 h-1/3 leading-[4rem] bg-gray-100 border-x border-gray-200 text-sm text-center">권장 조치사항</span>
-                            <span class="inline-block w-2/3 p-2 h-1/3 bg-white text-xs">20</span>
-                          </div>
-                        </div>
-                        <div class="w-1/2 border-t border-l border-gray-200">
-                          <dlp-chart></dlp-chart>
-                        </div>
-                      </div>
+                      <span class="inline-block w-5/6 p-2 bg-white text-xs">{{ details.path }}</span>
                     </div>
 
                     <!-- VT Report -->
@@ -163,14 +81,14 @@
                       <v-icon v-else class="mr-2">mdi-chevron-down</v-icon>VirusTotal Report
                     </div>
                     <!-- 원본 VT Report -->
-                    <!-- <div v-if="isVirusTotalReportOpen(index) && details.fileStatus.vtStatus == 1" class="bg-white"> -->
-                    <div v-if="isVirusTotalReportOpen(index)" class="bg-white">
+                    <div v-if="isVirusTotalReportOpen(index) && details.fileStatus.vtStatus == 1" class="bg-white">
                       <!-- VirusTotal Report content -->
                       <div class="flex h-full">
                         <div class="flex flex-col w-1/2 border-t border-gray-200">
                           <div class="flex flex-1 items-center border-b border-gray-200">
                             <span class="w-1/3 h-full flex items-center justify-center p-2 bg-gray-100 border-x border-gray-200 text-sm">SHA-256</span>
                             <span class="w-2/3 h-full flex items-center p-2 bg-white text-xs break-all">{{ details.vtReport.sha256 }}</span>
+                            <!-- <span class="w-2/3 h-full flex items-center p-2 bg-white text-xs break-all">{{ "SHA 256 값입니다." }}</span> -->
                           </div>
                           <div class="flex flex-1 items-center border-b border-gray-200">
                             <span class="w-1/3 h-full flex items-center justify-center p-2 bg-gray-100 border-x border-gray-200 text-sm">File Type</span>
