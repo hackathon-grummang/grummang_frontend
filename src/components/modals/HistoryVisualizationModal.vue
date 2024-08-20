@@ -178,20 +178,20 @@ const elements = computed(() => {
       id: edgeId,
       source: `${item.source}`,  // 문자열로 변환
       target: `${item.target}`,  // 문자열로 변환
-      label: item.label == 'File_SaaS_Match' ? '같은 파일': '내용 동일',
-      animated: item.label == 'File_SaaS_Match' ? true : false,
+      label: item.label == 'File_SaaS_Match' ? 'SaaS 같아': (item.label == 'File_Hash_Match' ? 'Hash 같아': '그룹' ),
+      animated: item.label == ['File_Hash_Match', 'File_SaaS_Match'] ? true : false,
       style: { 
         stroke: item.label == 'File_SaaS_Match' ? '#000' : '#A7A7A7',
         // fill: '#ddd',
 
       },
       labelStyle: { fill: '#000', fontWeight: 700 },
-      markerStart: {
-        type: item.label == 'File_SaaS_Match' ? '' : 'arrowclosed',
-        width: 20,
-        height: 20,
-        color: '#A7A7A7',
-      },
+      // markerStart: {
+      //   type: item.label == 'File_SaaS_Match' ? '' : 'arrowclosed',
+      //   width: 20,
+      //   height: 20,
+      //   color: '#A7A7A7',
+      // },
       markerEnd: {
         type: 'arrowclosed',
         width: 20,
