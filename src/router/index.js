@@ -4,7 +4,12 @@ const routes = [
   {
     path: '/',
     name: 'KISIA 해커톤',
-    component: () => import('../views/kisiaView.vue')
+    component: () => import('../views/KisiaView.vue')
+  },
+  {
+    path: '/event',
+    name: '파일 히스토리',
+    component: () => import('../views/FileEvent.vue')
   },
 ];
 
