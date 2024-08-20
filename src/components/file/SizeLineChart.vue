@@ -33,7 +33,7 @@ onMounted(() => {
       labels: chartData.map(row => row.date),
       datasets: [{
         label: '증가 크기',
-        data: chartData.map(row => row.volume / (1024 * 1024)),  // 여기서 변환하지 않음
+        data: chartData.map(row => (row.volume / (1024 * 1024)).toFixed(2)),  // 여기서 변환하지 않음
         fill: false,
         borderColor: 'rgb(49 46 129)',
         tension: 0.1,
