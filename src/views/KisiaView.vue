@@ -36,8 +36,6 @@ let responseData = ref(null);
 let error = ref(null);
 let orgId = 3;
 
-responseData.value = getSaasListApi(orgId);
-
 axios.defaults.baseURL = import.meta.env.VITE_APP_API_URL;
 
 const fetchPosts = async (orgId) => {
@@ -56,11 +54,9 @@ let detectionFileCount = ref(null);
 let fileDetails = ref(null);
 
 Promise.all([
-  fileScanApi(),
+  getSaasListApi(orgId)
   ]).then((values) => {
-    console.log('fileScan',values[0]);
-    fileDetails.value = values[0]
-    detectionFileCount.value = [values[0].data.total, values[0].data.dlpTotal, values[0].data.malwareTotal];
+    responseData.value = values[0];
     isApiOk.value = true;
 }).catch((err) => {
   console.log(err);
