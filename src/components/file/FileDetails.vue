@@ -30,7 +30,7 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <template v-for="(details, index) in fileDetails" :key="index" >
+            <template v-for="(details, index) in fileInformation" :key="index" >
               <tr class="hover:bg-gray-100 cursor-pointer" @click="toggleAccordion(index)">
                 <td class="px-2 py-2 text-center whitespace-nowrap">
                   <input 
@@ -187,7 +187,7 @@ import { ref, watch, defineProps, onMounted } from 'vue'
 import DlpChart from '@/components/file/DlpChart.vue'
 import VirustotalChart from '@/components/file/VirustotalChart.vue'
 import VirustotalModal from '@/components/modals/VirustotalModal.vue'
-import FileDeleteModal from '@/components/modals/FileDeleteModal.vue'
+// import FileDeleteModal from '@/components/modals/FileDeleteModal.vue'
 import { getSaasImg, getDate, getfileSize } from '@/utils/utils.js'
 
 
@@ -195,9 +195,8 @@ const props = defineProps({
   fileDetails: Object,
   required: true
 });
-const fileDetails = ref(props.fileDetails.data.files);
-
-console.log('fileDetails', props.fileDetails.data);
+const fileInformation = ref(props.fileDetails.data.files);
+console.log('fileDetails', fileInformation.value);
 
 let checkedIndex = ref([]);
 
@@ -206,8 +205,6 @@ const clearCheckedIndex = () => {
 }
 
 const accordionStatus = ref({});
-// const gscanStatus = ref({});
-// const dlpReportStatus = ref({});
 const virusTotalReportStatus = ref({});
 
 const isVirustotalModalOpen = ref(false);
