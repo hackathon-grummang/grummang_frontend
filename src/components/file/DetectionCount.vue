@@ -1,19 +1,11 @@
 <template>
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-5">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
     <div class="flex items-center bg-white shadow-sm rounded-lg p-4">
       <div>
         <h3 class="font-semibold text-gray-700">전체 파일 개수</h3>
         <p class="text-3xl font-semibold">{{ animatedStats[0] }}</p>
       </div>
       <v-icon :size="44" class="text-orange ml-auto">mdi-file-cloud-outline</v-icon>
-    </div>
-
-    <div class="flex items-center bg-white shadow-sm rounded-lg p-4">
-      <div>
-        <h3 class="font-semibold text-gray-700">민감 파일 개수</h3>
-        <p class="text-3xl font-semibold">{{ animatedStats[1] }}</p>
-      </div>
-      <v-icon :size="44" class="text-amber-400 ml-auto">mdi-file-search-outline</v-icon>
     </div>
 
     <div class="flex items-center bg-white shadow-sm rounded-lg p-4">
@@ -39,9 +31,9 @@ const props = defineProps({
 
 let animatedStats = ref(props.detectionFileCount);
 
-animateCountUp(0, 0, animatedStats.value[0], (val) => animatedStats.value[0] = val);
-animateCountUp(1, 0, animatedStats.value[1], (val) => animatedStats.value[1] = val);
-animateCountUp(2, 0, animatedStats.value[2], (val) => animatedStats.value[2] = val);
+// animateCountUp(0, 0, animatedStats.value[0], (val) => animatedStats.value[0] = val);
+// animateCountUp(1, 0, animatedStats.value[1], (val) => animatedStats.value[1] = val);
+// animateCountUp(2, 0, animatedStats.value[2], (val) => animatedStats.value[2] = val);
 
 
 function animateCountUp(index, start, end, callback) {
