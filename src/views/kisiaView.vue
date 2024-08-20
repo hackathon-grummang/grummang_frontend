@@ -16,18 +16,12 @@
       <!-- <content-error v-else></content-error> -->
     </main>
   </div>
-
-  <!-- <footer>
-    <the-footer></the-footer>
-  </footer> -->
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
-import SideNav from '@/components/SideNav.vue'
 import HeaderBreadcrumb from '@/components/HeaderBreadcrumb.vue'
-import TheFooter from '@/components/TheFooter.vue'
 import RegisterMain from '@/components/RegisterMain.vue'
 import DetectionCount from '@/components/file/DetectionCount.vue'
 import FileDetails from '@/components/file/FileDetails.vue'
@@ -36,7 +30,6 @@ import ContentError from '@/components/ContentError.vue'
 // Api 들
 import { getSaasListApi } from '@/apis/register.js'
 import { fileScanApi } from '@/apis/file.js'
-
 
 let loading = ref(false);
 let responseData = ref(null);

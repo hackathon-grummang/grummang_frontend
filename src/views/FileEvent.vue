@@ -11,23 +11,16 @@
         <history-trends :historyTrends="historyTrends"></history-trends>
         <history-details :historyDetails="historyDetails"></history-details>
       </div>
-
-      <!-- <file-test></file-test> -->
     </main>
     <content-error
       v-else></content-error>
   </div>
-  <!-- <footer>
-    <the-footer></the-footer>
-  </footer> -->
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { historyStatisticsApi, historyDetailsApi } from '@/apis/file.js'
-import SideNav from '@/components/SideNav.vue'
 import HeaderBreadcrumb from '@/components/HeaderBreadcrumb.vue'
-import TheFooter from '@/components/TheFooter.vue'
 import ContentError from '@/components/ContentError.vue'
 import CycleLoading from '@/components/CycleLoading.vue'
 import HistoryStatistics from '@/components/file/HistoryStatistics.vue'
@@ -47,10 +40,9 @@ Promise.all([
 ]).then((values) => {
   // historyStatistics.value = [values[0].data.totalUpload, values[0].data.totalChanged, values[0].data.totalDeleted];
   historyStatistics.value = [2024, 8, 20];
-  // console.log(historyStatistics.value);
+  console.log('valuse_0: ',values[0]);
   historyTrends.value = values[0].data.fileHistoryStatistics;
   historyDetails.value = values[1].data[0];
-  // console.log(historyDetails.value);
   isApiOk.value = true;
 }).catch((err) => {
   console.log(err);
