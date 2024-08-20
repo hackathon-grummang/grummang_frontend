@@ -35,7 +35,7 @@
               <th class="px-6 py-3 text-left text-sm font-bold font-medium text-white tracking-wider">연동</th>
               <th class="px-6 py-3 text-left text-sm font-bold font-medium text-white tracking-wider">SaaS</th>
               <th class="px-6 py-3 text-left text-sm font-bold font-medium text-white tracking-wider">관리자 계정</th>
-              <th class="px-6 py-3 text-left text-sm font-bold font-medium text-white tracking-wider">Webhook URL</th>
+              <!-- <th class="px-6 py-3 text-left text-sm font-bold font-medium text-white tracking-wider">Webhook URL</th> -->
               <th class="px-6 py-3 text-left text-sm font-bold font-medium text-white tracking-wider">별칭</th>
               <th class="px-6 py-3 text-left text-sm font-bold font-medium text-white tracking-wider">연동날짜</th>
             </tr>
@@ -72,7 +72,7 @@
                 </div>
               </td>
               <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.adminEmail }}</td>
-              <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.webhookUrl }}</td>
+              <!-- <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.webhookUrl }}</td> -->
               <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.alias }}</td>
               <!-- <td class="px-6 py-2 whitespace-nowrap text-xs">{{ getDate(saas.registerDate) }}</td> -->
               <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.registerDate }}</td>
