@@ -92,7 +92,7 @@ const props = defineProps({
   }
 });
 
-console.log('history', props.historyDetails.fileHistoryDto);
+// console.log('history', props.historyDetails.fileHistoryDto);
 const selectedHistory = ref(null);
 const isHistoryVisualizationModalOpen = ref(false);
 const visualizationInfo = ref(null);
@@ -101,6 +101,7 @@ const visualizationInfo = ref(null);
 const openHistoryVisualizationModal = () => {
   if(selectedHistory.value) {
     let data = {
+      "orgId": 3,
       "eventId": selectedHistory.value.eventId
     }
     historyVisualizatuonApi(data).then((response) => {
