@@ -23,38 +23,27 @@ import FileDetails from '@/components/file/FileDetails.vue'
 import ContentError from '@/components/ContentError.vue'
 // Api 들
 import { getSaasListApi } from '@/apis/register.js'
-import { fileScanApi } from '@/apis/file.js'
+import { fileScanApi, totalFileInfoApi } from '@/apis/file.js'
 
 let loading = ref(false);
-let responseData = ref(null);
 let error = ref(null);
-let orgId = 1;
-
-responseData.value = getSaasListApi(orgId);
-
-axios.defaults.baseURL = import.meta.env.VITE_APP_API_URL;
-
-const fetchPosts = async (orgId) => {
-  try {
-    const response = await axios.get('/api/v1/org-saas/1');
-    if(response.status == '200') {
-      return await response.data;
-    }
-  } catch (err) {
-    console.error('Error:', err);
-    throw err;  
-  }
-};
+let orgId = 3;
 
 let detectionFileCount = ref(null);
 let fileDetails = ref(null);
 
+let data = {
+  "orgId": orgId
+}
+
 Promise.all([
-  fileScanApi(),
+  fileScanApi(data),
+  totalFileInfoApi(data),
   ]).then((values) => {
     console.log('fileScan',values[0]);
     fileDetails.value = values[0]
-  detectionFileCount.value = [values[0].data.total, values[0].data.dlpTotal, values[0].data.malwareTotal];
+  // detectionFileCount.value = [values[0].data.total, values[0].data.dlpTotal, values[0].data.malwareTotal];
+    detectionFileCount.value = values[1];
   // isApiOk.value = true;
 }).catch((err) => {
   console.log(err);

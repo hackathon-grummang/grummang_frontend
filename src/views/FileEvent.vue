@@ -34,13 +34,16 @@ let historyStatistics = ref([]);
 let historyTrends = ref([]);
 let historyDetails = ref([]);
 
+let data = {
+  "orgId": 3
+}
+
 Promise.all([
-  historyStatisticsApi(),
-  historyDetailsApi(),
+  historyStatisticsApi(data),
+  historyDetailsApi(data),
 ]).then((values) => {
-  // historyStatistics.value = [values[0].data.totalUpload, values[0].data.totalChanged, values[0].data.totalDeleted];
-  historyStatistics.value = [2024, 8, 20];
-  console.log('valuse_0: ',values[0]);
+  console.log(values[0], values[1]);
+  historyStatistics.value = [values[0].data.totalUpload, values[0].data.totalChanged, values[0].data.totalDeleted];
   historyTrends.value = values[0].data.fileHistoryStatistics;
   historyDetails.value = values[1].data[0];
   isApiOk.value = true;
