@@ -6,16 +6,19 @@
         <h1 class="text-2xl h-10 font-semibold text-gray-700 px-3 content-center">2024 제2회 KISIA 정보보호 개발자 HACKATHON</h1>
       </div>
       <div class="flex items-center space-x-2 mr-3">
-        <a class="p-2 flex items-center text-sm text-orange-800 hover:text-orange-500 focus:outline-none focus:text-orange-500" @click="navigateTo('/')">
-          SaaS 등록
+        <a class="p-2 flex items-center text-sm text-gray-400 hover:text-gray-800 focus:outline-none focus:text-gray-800" @click="navigateTo('/')">
+          <v-icon :size="20" class="mr-1">mdi-cloud-arrow-down-outline</v-icon>SaaS 등록
         </a>
-        <a class="p-2 flex items-center text-sm text-orange-800 hover:text-orange-500 focus:outline-none focus:text-orange-500" @click="navigateTo('/event')">
-          SaaS 이벤트
+        <a class="p-2 flex items-center text-sm text-gray-400 hover:text-gray-800 focus:outline-none focus:text-gray-800" @click="navigateTo('/file')">
+          <v-icon :size="20" class="mr-1">mdi-file-eye-outline</v-icon>파일 정보
         </a>
-        <a class="p-2 flex items-center text-sm text-orange-800 hover:text-orange-500 focus:outline-none focus:text-orange-500" @click="navigateTo('/error')">
-          에러 페이지
+        <a class="p-2 flex items-center text-sm text-gray-400 hover:text-gray-800 focus:outline-none focus:text-gray-800" @click="navigateTo('/event')">
+          <v-icon :size="20" class="mr-1">mdi-cloud-clock-outline</v-icon>파일 이벤트
         </a>
-        <p class="text-orange-500 text-2xl font-bold">구름망</p>
+        <a class="p-2 flex items-center text-sm text-gray-400 hover:text-gray-800 focus:outline-none focus:text-gray-800" @click="navigateTo('/error')">
+          <v-icon :size="20" class="mr-1">mdi-alert-circle-outline</v-icon>에러 페이지
+        </a>
+        <p class="text-orange text-2xl font-bold">구름망</p>
       </div>
     </div>
   </header>
