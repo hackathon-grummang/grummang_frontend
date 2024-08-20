@@ -7,6 +7,11 @@ const routes = [
     component: () => import('../views/KisiaView.vue')
   },
   {
+    path: '/file',
+    name: '파일 정보',
+    component: () => import('../views/FileInfo.vue')
+  },
+  {
     path: '/event',
     name: '파일 히스토리',
     component: () => import('../views/FileEvent.vue')
