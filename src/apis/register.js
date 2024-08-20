@@ -11,7 +11,7 @@ let getSaasListApi = async (orgId) => {
     const response = [
       {adminEmail: "sasd@123123.vv",
         alias: "fffffff",
-        apiToken: "6n2hDHcpKwFDXePU67EUME+8PxGQl7Vdqq83n6REOsyIYOt2BU2bMEsUuC5+I2GebeqPzu8agiBRBYOUZC9xknPbieEfhRwAheUEtJGRB20=",
+        apiToken: "",
         id: 28,
         name: "slack",
         registerDate: "2024-08-20T13:44:51.000+00:00",
@@ -20,7 +20,7 @@ let getSaasListApi = async (orgId) => {
       {
         adminEmail: "hsp003636@gmail.com",
         alias: "asdfasdfasdf",
-        apiToken: "ZngEglk40c0QOoU5kjolwIpuUIv2c65Q3d9nbus1uTemRCU9HJQq2mc5uAWv3kzA2tK1uHMu/TRatXDho6Z44udIvMflFQ5KhkjAS/TLGwlBiTU2LREl0k1K0wUvMZA4U1DSj9P/xWA0m0uGiAUbo5s45HhdDRZK0fvCs65Uq+bQ17BZ7oM+q21EH76Qx/1kLGOkUTQNLX8ZPnq/fhTJVF+HLiLowBsmSX9Py8Tf4o866WkEx/dMyZ4+CyC1VN+Jq+UXDr69zNawIbU87U+pEp7Xcb3S+Lg9l9MHrWsf0VI=",
+        apiToken: "",
         id: 88,
         name: "GoogleDrive",
         registerDate: "2024-08-20T11:14:37.000+00:00",
