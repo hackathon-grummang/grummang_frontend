@@ -2,13 +2,16 @@
   <!-- <side-nav class="w-1/6 float-left"></side-nav> -->
   <div class="w-full float-right px-5">
     <header-breadcrumb></header-breadcrumb>
-    <main class="scroll-h scroll overflow-auto rounded-lg">
+    <cycle-loading
+      v-if="loading"></cycle-loading>
+    <main class="scroll-h scroll overflow-auto rounded-lg"
+      v-else-if="!loading && isApiOk">
       <detection-count
         :detectionFileCount="detectionFileCount"></detection-count>
       <file-details
         :fileDetails="fileDetails"></file-details>
-      <!-- <content-error v-else></content-error> -->
     </main>
+    <content-error v-else></content-error>
   </div>
 </template>
 
@@ -21,11 +24,13 @@ import DetectionCount from '@/components/file/DetectionCount.vue'
 import FileDetails from '@/components/file/FileDetails.vue'
 
 import ContentError from '@/components/ContentError.vue'
+import CycleLoading from '@/components/CycleLoading.vue'
 // Api 들
 import { getSaasListApi } from '@/apis/register.js'
 import { fileScanApi, totalFileInfoApi } from '@/apis/file.js'
 
-let loading = ref(false);
+let isApiOk = ref(false);
+let loading = ref(true);
 let error = ref(null);
 let orgId = 3;
 
@@ -44,11 +49,11 @@ Promise.all([
     fileDetails.value = values[0]
   // detectionFileCount.value = [values[0].data.total, values[0].data.dlpTotal, values[0].data.malwareTotal];
     detectionFileCount.value = values[1];
-  // isApiOk.value = true;
+  isApiOk.value = true;
 }).catch((err) => {
   console.log(err);
 }).finally(() => {
-  // loading.value = false;
+  loading.value = false;
 });
 
 </script>
