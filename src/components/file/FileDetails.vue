@@ -11,44 +11,6 @@
             >
               <v-icon :size="20">mdi-shield-bug-outline</v-icon> VirusTotal 검사
             </button>
-            <button
-              class="inline-block border border-red-600 px-3 py-2 align-text-bottom text-sm font-semibold text-red-600 hover:bg-red-600 hover:text-white active:bg-red-600"
-              @click="openFileDeleteModal"
-            >
-              <v-icon :size="20">mdi-delete-outline</v-icon> 파일삭제
-            </button>
-            <button
-              class="inline-block border border-orange px-3 py-2 align-text-bottom text-sm font-semibold text-orange hover:bg-orange hover:text-white hover:border-orange active:bg-orange"
-              @click="openconnectModal"
-            >
-              <v-icon :size="20">mdi-refresh</v-icon> 새로고침
-            </button>
-          </div>
-          <div class="flex ml-auto space-x-2">
-            
-            <select class="block w-sm text-sm font-medium transition duration-75 border border-gray-300 rounded-md shadow-sm focus:border-blue-600 focus:ring-1 focus:ring-inset focus:ring-blue-600 bg-none" >
-              <option value="week">DLP</option>
-              <option value="month">악성 탐지</option>
-              <option value="year">VirusTotal</option>
-              <option value="year">파일명</option>
-              <option value="year">SaaS</option>
-              <option value="year">사용자</option>
-              <option value="year" selected>생성날짜</option>
-            </select>
-            <select class="block w-sm text-sm font-medium transition duration-75 border border-gray-300 rounded-md shadow-sm focus:border-blue-600 focus:ring-1 focus:ring-inset focus:ring-blue-600 bg-none" >
-              <option value="week">오름차순</option>
-              <option value="month" selected>내림차순</option>
-            </select>
-
-            <div class="relative max-w-sm">
-              <input class="w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500" type="search" placeholder="검색">
-              <button class="absolute inset-y-0 right-0 flex items-center px-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-r-md hover:bg-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
-              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.795 13.408l5.204 5.204a1 1 0 01-1.414 1.414l-5.204-5.204a7.5 7.5 0 111.414-1.414zM8.5 14A5.5 5.5 0 103 8.5 5.506 5.506 0 008.5 14z" />
-              </svg>
-            </button>
-          </div>
-
 
           </div>
         </div>
@@ -59,8 +21,8 @@
           <thead class="bg-indigo-900">
             <tr>
               <th class="px-2 py-3 w-[5%] text-center text-sm font-bold font-medium text-white tracking-wider"></th>
-              <th class="px-1 py-3 w-[5%] text-center text-sm font-bold font-medium text-white tracking-wider">DLP</th>
-              <th class="px-1 py-3 w-[7%] text-center text-sm font-bold font-medium text-white tracking-wider">악성탐지</th>
+              <!-- <th class="px-1 py-3 w-[5%] text-center text-sm font-bold font-medium text-white tracking-wider">DLP</th> -->
+              <!-- <th class="px-1 py-3 w-[7%] text-center text-sm font-bold font-medium text-white tracking-wider">악성탐지</th> -->
               <th class="px-2 py-3 w-[7%] text-center text-sm font-bold font-medium text-white tracking-wider">VirusTotal</th>
               <th class="px-2 py-3 w-[26%] text-left text-sm font-bold font-medium text-white tracking-wider">파일명</th>
               <th class="px-2 py-3 w-[10%] text-center text-sm font-bold font-medium text-white tracking-wider">파일 유형</th>
@@ -70,7 +32,7 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-            <template v-for="(details, index) in totalData" :key="index" >
+            <template v-for="(details, index) in fileDetails" :key="index" >
               <tr class="hover:bg-gray-100 cursor-pointer" @click="toggleAccordion(index)">
                 <td class="px-2 py-2 text-center whitespace-nowrap">
                   <input 
@@ -81,7 +43,7 @@
                     onclick="event.cancelBubble = true;"
                   />
                 </td>
-                <td class="px-2 py-2 text-center whitespace-nowrap">
+                <!-- <td class="px-2 py-2 text-center whitespace-nowrap">
                   <span v-if="details.fileStatus.dlpStatus === -1">
                     <v-icon :size="22" class="text-gray-300">mdi-minus-circle-outline</v-icon>
                   </span>
@@ -108,7 +70,7 @@
                   <span v-else>
                     <v-icon :size="24" class="text-rose-600">mdi-help-circle-outline</v-icon>
                   </span>
-                </td>
+                </td> -->
                 <td class="px-2 py-2 text-center whitespace-nowrap">
                   <span v-if="details.fileStatus.vtStatus === -1" class="bg-gray-200 text-slate-900 text-xs me-2 px-2.5 py-0.5 rounded-full">미검사</span>
                   <span v-if="details.fileStatus.vtStatus === 0" class="bg-amber-200 text-amber-800 text-xs me-2 px-2.5 py-0.5 rounded-full">스캔중</span>
@@ -285,8 +247,8 @@
         </table>
       </div>
     </div>
-    {{ typeof totalPage + ' '+ totalPage }}
-    <the-pagination :totalPage="totalPage" @send-event="reset"></the-pagination>
+    <!-- {{ typeof totalPage + ' '+ totalPage }}
+    <the-pagination :totalPage="totalPage" @send-event="reset"></the-pagination> -->
   </div>
 
 <virustotal-modal
@@ -319,43 +281,6 @@ const fileDetails = ref(props.fileDetails.data.files);
 
 console.log('fileDetails', props.fileDetails.data);
 
-const items = ref([]);
-const totalData = ref([]);
-const selectPages = ref(1); // 1이라는 페이지로 셋팅
-const totalPage = ref(0); // totalData의 개수에 따라 페이지네이션을 그려지는 리스트를 뜻합니다.
-const totalCount = ref(null);
-const limit = ref(10) // 한 페이지에 보여줄 아이템 개수
-
-const getData = () => {
-  totalData.value = props.fileDetails.data.files;
-  totalCount.value = totalData !== undefined ? totalData.value.length : 0;
-  totalPage.value = Math.ceil(totalCount.value / limit.value) !== 0 ? Math.ceil(totalCount.value / limit.value) : 1;
-  totalData.value = disassemble(selectPages.value - 1, totalData.value, limit.value);
-}
-
-const disassemble = (index, data, size) => {
-  const res = new Array();
-
-  for(let i = 0; i < data.length; i += size) {
-    res.push(data.slice(i, i + size));
-  }
-  console.log('res:', res);
-  return res[index];
-}
-
-onMounted(() => {
-  getData();
-})
-
-const reset = (pageIdx) => {
-  if(pageIdx === 0 ) selectPages.value = 1;
-  else selectPages.value = pageIdx;
-}
-
-watch(selectPages, () => {
-  getData();
-})
-
 let checkedIndex = ref([]);
 
 const clearCheckedIndex = () => {
@@ -363,8 +288,8 @@ const clearCheckedIndex = () => {
 }
 
 const accordionStatus = ref({});
-const gscanStatus = ref({});
-const dlpReportStatus = ref({});
+// const gscanStatus = ref({});
+// const dlpReportStatus = ref({});
 const virusTotalReportStatus = ref({});
 
 const isVirustotalModalOpen = ref(false);
@@ -377,22 +302,6 @@ const toggleAccordion = (index) => {
 
 const isAccordionOpen = (index) => {
   return accordionStatus.value[index] || false;
-}
-
-const toggleGscanReport = (index) => {
-  gscanStatus.value[index] = !gscanStatus.value[index];
-}
-
-const isGscanOpen = (index) => {
-  return gscanStatus.value[index] || false;
-}
-
-const toggleDLPReport = (index) => {
-  dlpReportStatus.value[index] = !dlpReportStatus.value[index];
-}
-
-const isDLPReportOpen = (index) => {
-  return dlpReportStatus.value[index] || false;
 }
 
 const toggleVirusTotalReport = (index) => {

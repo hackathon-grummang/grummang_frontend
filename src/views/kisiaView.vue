@@ -11,8 +11,8 @@
 
       <detection-count
         :detectionFileCount="detectionFileCount"></detection-count>
-      <!-- <file-details
-        :fileDetails="fileDetails"></file-details> -->
+      <file-details
+        :fileDetails="fileDetails"></file-details>
       <!-- <content-error v-else></content-error> -->
     </main>
   </div>
