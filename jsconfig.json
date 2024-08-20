@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+      // "api/*": ["https://back.grummang.com/api/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

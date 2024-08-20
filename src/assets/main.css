@@ -1,0 +1,40 @@
+@import './base.css';
+
+/* IE, Firefox */
+/* .scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scroll::-webkit-scrollbar{
+  display:none;
+} */
+
+/* 4.8rem */
+.scroll-h {
+  height: calc(100vh - 5.8rem);
+}
+
+.scroll::-webkit-scrollbar {
+  width: 15px;
+}
+.scroll::-webkit-scrollbar-track {
+  background-color: rgb(214, 214, 214);
+  border-radius: 0.5rem;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  background-color: #afafaf;
+}
+
+.scroll::-webkit-scrollbar-thumb:hover {
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  background-color: #838383;
+}
+.scroll::-webkit-scrollbar-button {
+  display: none;
+}
