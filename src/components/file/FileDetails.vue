@@ -56,7 +56,7 @@
                   </div>
                 </td>
                 <td class="px-2 py-2 whitespace-nowrap text-xs">{{ details.user }}</td>
-                <td class="px-2 py-2 whitespace-nowrap text-xs text-center">{{ details.date }}</td>
+                <td class="px-2 py-2 whitespace-nowrap text-xs text-center">{{ convertDate(details.date) }}</td>
               </tr>
               
               <!-- Accordion row -->
@@ -146,7 +146,7 @@
                             <span class="w-2/3 flex items-center p-2 text-xs bg-white">{{ details.vtReport.falcon }}</span>
                           </div>
                           <div class="flex flex-1">
-                            <span class="w-1/3 flex items-center justify-center p-2 bg-gray-100 border-x border-gray-200 text-sm text-center">Santinal One</span>
+                            <span class="w-1/3 flex items-center justify-center p-2 bg-gray-100 border-x border-gray-200 text-sm text-center">Sentinal One</span>
                             <span class="w-2/3 flex items-center p-2 text-xs bg-white">{{ details.vtReport.sentinelone }}</span>
                           </div>
                         </div>
@@ -188,7 +188,7 @@ import DlpChart from '@/components/file/DlpChart.vue'
 import VirustotalChart from '@/components/file/VirustotalChart.vue'
 import VirustotalModal from '@/components/modals/VirustotalModal.vue'
 // import FileDeleteModal from '@/components/modals/FileDeleteModal.vue'
-import { getSaasImg, getDate, getfileSize } from '@/utils/utils.js'
+import { getSaasImg, getDate, getfileSize, convertDate } from '@/utils/utils.js'
 
 
 const props = defineProps({
