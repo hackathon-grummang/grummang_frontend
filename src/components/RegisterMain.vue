@@ -67,15 +67,15 @@
               </td>
               <td class="px-6 py-2 whitespace-nowrap">
                 <div class="flex items-center">
-                  <!-- <img class="size-5 rounded-full mr-2" :src="getSaasImg(saas.name)" :alt="saas.name" /> -->
+                  <img class="size-5 rounded-full mr-2" :src="getSaasImg(saas.name)" :alt="saas.name" />
                   <span class="text-sm"> {{ saas.name }}</span>
                 </div>
               </td>
               <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.adminEmail }}</td>
               <!-- <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.webhookUrl }}</td> -->
               <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.alias }}</td>
-              <!-- <td class="px-6 py-2 whitespace-nowrap text-xs">{{ getDate(saas.registerDate) }}</td> -->
-              <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.registerDate }}</td>
+              <td class="px-6 py-2 whitespace-nowrap text-xs">{{ getDate(saas.registerDate) }}</td>
+              <!-- <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.registerDate }}</td> -->
             </tr>
           </tbody>
         </table>
