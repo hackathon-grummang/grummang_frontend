@@ -30,30 +30,6 @@ const props = defineProps({
 });
 
 let animatedStats = ref(props.detectionFileCount);
-
-// animateCountUp(0, 0, animatedStats.value[0], (val) => animatedStats.value[0] = val);
-// animateCountUp(1, 0, animatedStats.value[1], (val) => animatedStats.value[1] = val);
-// animateCountUp(2, 0, animatedStats.value[2], (val) => animatedStats.value[2] = val);
-
-
-function animateCountUp(index, start, end, callback) {
-  const duration = 1500; // duration of animation in ms
-  const frameDuration = 1500 / 60; // 60 frames per second
-  const totalFrames = Math.round(duration / frameDuration);
-  const easeOutQuad = t => t * (2 - t);
-  
-  let frame = 0;
-  const countUp = () => {
-    frame++;
-    const progress = easeOutQuad(frame / totalFrames);
-    const currentValue = Math.round(start + (end - start) * progress);
-    callback(currentValue);
-    if (frame < totalFrames) {
-      requestAnimationFrame(countUp);
-    }
-  };
-  countUp();
-}
 </script>
 
 <style scoped>
