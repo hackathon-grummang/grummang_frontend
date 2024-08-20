@@ -7,9 +7,6 @@
             <v-icon>mdi-close</v-icon>
           </button>
         </div>
-        <div class="flex justify-center p-4">
-          <img src="@/assets/grummang_mascot_small.png" alt="구름망 캐릭터" class="size-1/3 object-cover rounded-full">
-        </div>
         <div class="flex justify-center">
           <img class="size-7 float-left rounded-full mr-2" :src="getSaasImg(props.selectedSaas.name)" :alt="props.selectedSaas.name"/>
           <h1 class="text-2xl font-bold mb-2">{{ props.selectedSaas.name }}</h1>
@@ -17,10 +14,6 @@
 
         <p class="text-sm font-bold text-center mb-4">별칭 : {{ props.selectedSaas.alias }}</p>
         <p class="text-sm text-red-700 font-bold text-center mb-2">위 SaaS의 연동 해제하시겠습니까?</p>
-        <p class="text-xs text-black text-center mb-2">
-          위 SaaS의 연동 해제하면은<br> 앞으로 CASB에서 관리될 수 없습니다.<br>
-          정말 Jira의 연동을 해제하시겠습니까?
-        </p>
 
         <div class="py-4">
           <label class="inline-flex items-center">

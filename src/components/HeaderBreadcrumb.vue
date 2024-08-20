@@ -15,7 +15,6 @@
         <a class="p-2 flex items-center text-sm text-orange-800 hover:text-orange-500 focus:outline-none focus:text-orange-500" @click="navigateTo('/error')">
           에러 페이지
         </a>
-        <img src="@/assets/grummang_mascot_small.png" alt="구름망 캐릭터" class="w-10 h-10 object-cover rounded-full mr-2">
         <p class="text-orange-500 text-2xl font-bold">구름망</p>
       </div>
     </div>

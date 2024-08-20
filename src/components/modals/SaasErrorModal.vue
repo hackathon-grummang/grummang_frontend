@@ -7,9 +7,6 @@
             <v-icon>mdi-close</v-icon>
           </button>
         </div>
-        <div class="flex justify-center p-4">
-          <img src="@/assets/grummang_mascot_small.png" alt="구름망 캐릭터" class="size-1/4 object-cover rounded-full">
-        </div>
 
         <p class="text-sm text-red-700 font-bold text-center mb-4">SaaS {{ errorType }} 중에 에러가 발생했습니다.</p>
         <p class="text-sm text-black text-center mb-4">Error Code : {{ errorCode }}</p>
