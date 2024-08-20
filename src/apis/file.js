@@ -500,7 +500,7 @@ let historyDetailsApi = async () => {
       "status": "success",
       "data": [
           {
-              "totalEvent": 31,
+              "totalEvent": 5,
               "fileHistoryDto": [
                   {
                       "eventId": 12,
