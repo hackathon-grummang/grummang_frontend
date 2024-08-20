@@ -35,7 +35,6 @@
               <th class="px-6 py-3 text-left text-sm font-bold font-medium text-white tracking-wider">연동</th>
               <th class="px-6 py-3 text-left text-sm font-bold font-medium text-white tracking-wider">SaaS</th>
               <th class="px-6 py-3 text-left text-sm font-bold font-medium text-white tracking-wider">관리자 계정</th>
-              <!-- <th class="px-6 py-3 text-left text-sm font-bold font-medium text-white tracking-wider">Webhook URL</th> -->
               <th class="px-6 py-3 text-left text-sm font-bold font-medium text-white tracking-wider">별칭</th>
               <th class="px-6 py-3 text-left text-sm font-bold font-medium text-white tracking-wider">연동날짜</th>
             </tr>
@@ -72,10 +71,8 @@
                 </div>
               </td>
               <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.adminEmail }}</td>
-              <!-- <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.webhookUrl }}</td> -->
               <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.alias }}</td>
               <td class="px-6 py-2 whitespace-nowrap text-xs">{{ getDate(saas.registerDate) }}</td>
-              <!-- <td class="px-6 py-2 whitespace-nowrap text-xs">{{ saas.registerDate }}</td> -->
             </tr>
           </tbody>
         </table>
@@ -89,18 +86,11 @@
     @close="closeconnectModal"
   ></saas-connect-modal>
 
-  <saas-modification-modal
-    v-if="isModificationModalOpen"
-    :selectedSaas="selectedSaas"
-    @close="closeModificationModal"
-  ></saas-modification-modal>
-
   <saas-unconnect-modal
     v-if="isUnconnectModalOpen"
     :selectedSaas="selectedSaas"
     @close="closeUnconnectModal"
   ></saas-unconnect-modal>
-  <!-- <axios-test></axios-test> -->
 </template>
 
 <script setup>
@@ -108,9 +98,10 @@ import { ref, defineProps, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios'
 import SaasConnectModal from '@/components/modals/SaasConnectModal.vue'
-import SaasModificationModal from '@/components/modals/SaasModificationModal.vue'
 import SaasUnconnectModal from '@/components/modals/SaasUnconnectModal.vue'
 import { getSaasImg, getDate } from '@/utils/utils.js'
+
+const router = useRouter();
 
 const props = defineProps({
   responseData: {
@@ -120,14 +111,11 @@ const props = defineProps({
 });
 
 const isconnectModalOpen = ref(false);
-const isModificationModalOpen = ref(false);
 const isUnconnectModalOpen = ref(false);
 const selectedSaas = ref(null);
 
 const saasData = ref(await props.responseData);
-console.log('saasData' + saasData);
 
-const router = useRouter();
 
 const openconnectModal = () => {
   isconnectModalOpen.value = true;
@@ -135,20 +123,6 @@ const openconnectModal = () => {
 
 const closeconnectModal = () => {
   isconnectModalOpen.value = false;
-  router.go();
-}
-
-const openModificationModal = () => {
-  if(selectedSaas.value) {
-    isModificationModalOpen.value = true;
-  } else {
-    alert('SaaS를 선택해주세요.');
-  }
-}
-
-const closeModificationModal = () => {
-  isModificationModalOpen.value = false;
-  selectedSaas.value = null;
   router.go();
 }
 
@@ -165,15 +139,4 @@ const closeUnconnectModal = () => {
   selectedSaas.value = null;
   router.go();
 }
-
-const handleSubmit = (data) => {
-  console.log('SaaS 연동 데이터:', data);
-  // 여기서 연동 로직을 처리합니다.
-};
-
-// 통계 수치
-const connectedCount = computed(() => saasData.value.filter(saas => saas.status === 1).length);
-const connectingCount = computed(() => saasData.value.filter(saas => saas.status === 0).length);
-const failConnectCount = computed(() => saasData.value.filter(saas => saas.status === 99).length);
-
 </script>
