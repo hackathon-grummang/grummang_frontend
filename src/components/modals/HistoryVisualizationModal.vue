@@ -123,7 +123,43 @@ const elements = computed(() => {
       // parentNode: item.saas,
       // extent: 'parent',
     })
-    
+  })
+
+  googleDriveData.forEach((item, index) => {
+    const nodeId = `${item.eventId}`;
+    let yPosition;
+    let tuning = 25;
+    switch(item.eventType.toLowerCase()) {
+      case 'file_upload':
+        yPosition = Math.floor((Math.random() * (tuning - (-tuning))) + (-tuning));
+        break;
+      case 'file_change':
+        yPosition = 600;
+        break;
+      case 'file_delete':
+        yPosition = 300;
+        break;
+      default:
+        yPosition = 900; // 기본값
+    }
+
+    nodes.push({
+      id: nodeId,
+      type: 'custom',
+      data: { 
+        originNode : item.eventId === data.data.originNode,
+        eventType: item.eventType,
+        saas: item.saas,
+        fileName: item.fileName,
+        email: item.email,
+        eventTs: item.eventTs,
+        uploadChannel: item.uploadChannel,
+        similarity : item.similarity
+      },
+      targetPosition: Position.Left,
+      sourcePosition: Position.Right,
+      position: { x: 50 + index * 400, y: yPosition },
+    })
   })
 
 
@@ -178,7 +214,7 @@ const elements = computed(() => {
       id: edgeId,
       source: `${item.source}`,  // 문자열로 변환
       target: `${item.target}`,  // 문자열로 변환
-      label: item.label == 'File_SaaS_Match' ? 'SaaS 같아': (item.label == 'File_Hash_Match' ? 'Hash 같아': '그룹' ),
+      label: item.label == 'File_SaaS_Match' ? '같은 파일': (item.label == 'File_Hash_Match' ? '내용 동일': '파일 그룹' ),
       animated: item.label == ['File_Hash_Match', 'File_SaaS_Match'] ? true : false,
       style: { 
         stroke: item.label == 'File_SaaS_Match' ? '#000' : '#A7A7A7',
@@ -186,12 +222,12 @@ const elements = computed(() => {
 
       },
       labelStyle: { fill: '#000', fontWeight: 700 },
-      // markerStart: {
-      //   type: item.label == 'File_SaaS_Match' ? '' : 'arrowclosed',
-      //   width: 20,
-      //   height: 20,
-      //   color: '#A7A7A7',
-      // },
+      markerStart: {
+        type: item.label == 'File_Group_Relation' ? 'arrowclosed' : '',
+        width: 20,
+        height: 20,
+        color: '#A7A7A7',
+      },
       markerEnd: {
         type: 'arrowclosed',
         width: 20,

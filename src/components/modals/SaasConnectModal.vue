@@ -177,9 +177,8 @@ const syncSaaS = () => {
     return;
   }
 
-  // 다음 스텝 -> 해당 값들을 POST로 보내기
   let connectData = {
-    "orgId": 1,     // samsung
+    "orgId": 3,     // Hackathon
     "saasId": saasType.value,    // slack
     "alias": safeAlias.value,
     "adminEmail": safeSaasEmail.value,
@@ -252,7 +251,7 @@ const googleOAuth2 = () => {
   }
 
   let connectData = {
-    "orgId": 1,     // samsung
+    "orgId": 3,     // samsung
     "saasId": saasType.value,
     "alias": safeAlias.value,
     "adminEmail": safeSaasEmail.value,
@@ -286,31 +285,32 @@ const validateAdminEmail = () => {
 };
 
 const validateWebhook = () => {
-  if(saasType.value != 'None') {
-    getWebhookApi(saasType.value).then((response) => {
-      webhookUrl.value = response;
-    });
-  }
+  // if(saasType.value != 'None') {
+  //   getWebhookApi(saasType.value).then((response) => {
+  //     ;
+  //   });
+  // }
   if(saasType.value != '6') {
     showApiInput.value = true;
+    webhookUrl.value = "webhook이야!!!!!!!!!!!!!!!!!!!!!!!!!"
   }
   else {
     showApiInput.value = false;
   }
 }
 
-const validateApiToken = () => {
-  let data = {
-    "apiToken": apiToken.value
-  }
-  TokenValidationApi(data, 1).then((response) => {
-    isValidApiToken.value = response;
-  });
-  console.log('API 토큰 검증이래:  '+ isValidApiToken.value);
-}
+// const validateApiToken = () => {
+//   let data = {
+//     "apiToken": apiToken.value
+//   }
+//   TokenValidationApi(data, 1).then((response) => {
+//     isValidApiToken.value = response;
+//   });
+//   console.log('API 토큰 검증이래:  '+ isValidApiToken.value);
+// }
 
 watch(saasEmail, validateAdminEmail);
-watch(apiToken, validateApiToken);
+// watch(apiToken, validateApiToken);
 watch(saasType, validateWebhook);
 
 </script>
