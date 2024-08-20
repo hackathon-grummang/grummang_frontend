@@ -5,7 +5,8 @@ axios.defaults.baseURL = import.meta.env.VITE_YUBIN_API;
 
 let totalFileInfoApi = async (data) => {
   try {
-    const response = await axios.get('/api/v1/files/board');
+    const response = await axios.post('/api/v1/files/board', data);
+    console.log(response.data);
     if(response.data.status == 'error') {
       return;
     }
@@ -26,7 +27,7 @@ let fileScanApi = async (data) => {
       return;
     }
     if(response.status == '200') {
-      console.log('dlpscan', response.data);
+      // console.log('dlpscan', response.data);
       return response.data;
     }
   } catch (err) {
