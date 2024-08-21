@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="text-lg font-semibold mb-2">한달간 파일 크기 증가 추이</h2>
+    <h2 class="text-lg font-semibold mb-2">하루간 파일 크기 증가 추이</h2>
     <canvas ref="chartRef"></canvas>
   </div>
 </template>
@@ -33,7 +33,7 @@ onMounted(() => {
       labels: chartData.map(row => row.date),
       datasets: [{
         label: '증가 크기',
-        data: chartData.map(row => row.volume),  // 여기서 변환하지 않음
+        data: chartData.map(row => (row.volume / (1024 * 1024)).toFixed(2)),  // 여기서 변환하지 않음
         fill: false,
         borderColor: 'rgb(49 46 129)',
         tension: 0.1,

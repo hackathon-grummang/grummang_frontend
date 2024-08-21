@@ -25,6 +25,7 @@ import DetectionCount from '@/components/file/DetectionCount.vue'
 import FileDetails from '@/components/file/FileDetails.vue'
 
 import ContentError from '@/components/ContentError.vue'
+import CycleLoading from '@/components/CycleLoading.vue'
 // Api 들
 import { getSaasListApi } from '@/apis/register.js'
 import { fileScanApi } from '@/apis/file.js'
@@ -35,20 +36,6 @@ let isApiOk = ref(false);
 let responseData = ref(null);
 let error = ref(null);
 let orgId = 3;
-
-axios.defaults.baseURL = import.meta.env.VITE_APP_API_URL;
-
-const fetchPosts = async (orgId) => {
-  try {
-    const response = await axios.post('/api/v1/org-saas/3');
-    if(response.status == '200') {
-      return await response.data;
-    }
-  } catch (err) {
-    console.error('Error:', err);
-    throw err;  
-  }
-};
 
 let detectionFileCount = ref(null);
 let fileDetails = ref(null);

@@ -1,7 +1,7 @@
 import router from '@/router/index.js';
 import axios from 'axios';
 
-axios.defaults.baseURL = import.meta.env.VITE_YUBIN_API;
+axios.defaults.baseURL = import.meta.env.VITE_HACKATHON_API;
 
 let totalFileInfoApi = async (data) => {
   try {

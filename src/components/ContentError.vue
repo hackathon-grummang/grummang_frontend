@@ -2,7 +2,7 @@
 <div class="h-[50vh] place-content-center bg-white p-4 rounded-lg shadow-sm">
   <div class="text-center">
     
-    <v-icon size="140" color="#FF9A00">mdi-cloud-alert-outline</v-icon>
+    <v-icon size="140" class="text-orange blink-effect">mdi-cloud-alert-outline</v-icon>
     <h1 class="mt-2 text-xl font-bold tracking-tight text-gray-900">현재 페이지를 불러올 수 없습니다.</h1>
 
     <p class="mt-2 text-base text-orange">이 페이지는 오류 페이지입니다.</p>
@@ -14,6 +14,20 @@
 <script setup>
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
+.blink-effect {
+  animation: blink 3s ease-in-out infinite;
+}
 </style>

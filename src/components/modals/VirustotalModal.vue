@@ -62,6 +62,7 @@ const closeErrorModal = () => {
 
 const uploadVirustotalScan = () => {
   let data = {
+    "orgId": 3,
     "fileIds": Object.values(props.checkedIndex)
   }
   console.log(data);
