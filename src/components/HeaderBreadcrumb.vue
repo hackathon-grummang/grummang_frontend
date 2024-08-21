@@ -4,8 +4,12 @@
       <div class="flex items-center space-x-4">
         <img src="../../public/assets/navTitle.webp" class="ml-3" alt="Nav Title">
         <!-- <h1 class="text-2xl h-10 font-semibold text-gray-700 px-3 content-center">2024 제2회 KISIA 정보보호 개발자 HACKATHON</h1> -->
-        <h1 class="text-2xl h-10 font-semibold px-3 content-center bg-gradient-to-r from-sky-400 via-sky-700 to-sky-900 text-transparent bg-clip-text">
+        <!-- <h1 class="text-2xl h-10 font-semibold px-3 content-center bg-gradient-to-r from-sky-400 via-sky-700 to-sky-900 text-transparent bg-clip-text">
           2024 제2회 KISIA 정보보호 개발자 HACKATHON
+        </h1> -->
+        <h1 class="text-3xl h-10 font-semibold px-3 content-center animated-gradient">
+          <!-- 2024 제2회 KISIA 정보보호 개발자 HACKATHON -->
+          멀티 SaaS 모니터링 서비스
         </h1>
       </div>
       <div class="flex items-center space-x-2 mr-3">
@@ -40,5 +44,23 @@ const navigateTo = (path) => {
 <style scoped>
 .arrow-icon {
   font-size: 35px;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(to right, #38bdf8, #0369a1, #0c4a6e, #0369a1, #38bdf8);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gradient-animation 8s linear infinite;
 }
 </style>
