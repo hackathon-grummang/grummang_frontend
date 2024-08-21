@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="text-lg font-semibold mb-2">한달간 파일 크기 증가 추이</h2>
+    <h2 class="text-lg font-semibold mb-2">하루간 파일 크기 증가 추이</h2>
     <canvas ref="chartRef"></canvas>
   </div>
 </template>
