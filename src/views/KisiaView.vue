@@ -25,6 +25,7 @@ import DetectionCount from '@/components/file/DetectionCount.vue'
 import FileDetails from '@/components/file/FileDetails.vue'
 
 import ContentError from '@/components/ContentError.vue'
+import CycleLoading from '@/components/CycleLoading.vue'
 // Api 들
 import { getSaasListApi } from '@/apis/register.js'
 import { fileScanApi } from '@/apis/file.js'
